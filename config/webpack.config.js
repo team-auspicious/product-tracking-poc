@@ -56,6 +56,7 @@ const imageInlineSizeLimit = parseInt(
 );
 
 const ModuleGraphPlugin = require("./plugins/module-graph-plugin");
+const ASTPlugin = require("./plugins/ast-plugin");
 
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
@@ -592,6 +593,7 @@ module.exports = function (webpackEnv) {
             : undefined,
         ),
       ),
+      new ASTPlugin(["CustomInput"]),
       new ModuleGraphPlugin(),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
